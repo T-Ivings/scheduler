@@ -1,5 +1,5 @@
 import React from 'react';
-import { useVisualMode } from 'hooks/useVisualMode';
+import useVisualMode from 'hooks/useVisualMode';
 
 import 'components/Appointment/styles.scss'
 
@@ -26,7 +26,7 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
+  
   function save(name, interviewer) {
     transition(SAVING)
    props.bookInterview(props.id, { student: name, interviewer })
@@ -36,8 +36,8 @@ export default function Appointment(props) {
   }
 
   function edit(name, interviewer) {
-    transition(EDIT)
-    props.bookInterview(props.id, {student: name, interviewer})
+    transition(SAVING)
+    props.editInterview(props.id, {student: name, interviewer})
     .then(() => transition(SHOW));
   }
   
@@ -55,7 +55,7 @@ export default function Appointment(props) {
   }
 
  return ( 
-   <article className="appointment">
+   <article className="appointment" data-testid="appointment">
      <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={ () => transition(CREATE) } /> }
       {mode === SHOW && (
@@ -63,7 +63,7 @@ export default function Appointment(props) {
          student={ props.interview.student }
          interviewer={ props.interview.interviewer.name }
          onDelete={ confirm }
-         onEdit={ edit }
+         onEdit={()=> transition(EDIT) }
 
        />
     )}
@@ -87,7 +87,7 @@ export default function Appointment(props) {
       student={ props.interview.student }
       interviewers={ props.interviewers }
       onCancel={ ()=> back() }
-      onSave={ save }
+      onSave={ edit }
     /> }
 
     {mode === ERROR_DELETE && (

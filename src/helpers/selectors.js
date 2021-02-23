@@ -31,10 +31,15 @@ export function getAppointmentsForDay(state, day) {
   const arr = []
 
   for(const stateDay of state.days){
+
     for(const apmt in state.appointments) {
+
       if (stateDay.name === day) {
+
         const thisAppointment = state.appointments[apmt];
+
         if (stateDay.appointments.includes(thisAppointment.id)) {
+
           arr.push(thisAppointment)
           }
         }
