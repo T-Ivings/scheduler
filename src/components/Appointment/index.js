@@ -27,6 +27,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
   
+  //function to create a new appointment
   function save(name, interviewer) {
   transition(SAVING)
   props.bookInterview(props.id, { student: name, interviewer })
@@ -35,12 +36,14 @@ export default function Appointment(props) {
     
   }
 
+  //function to edit existing appointment
   function edit(name, interviewer) {
   transition(SAVING)
   props.editInterview(props.id, {student: name, interviewer})
    .then(() => transition(SHOW));
   }
   
+  //function to cancel existing interview
   function cancel() {
     transition(DELETING, true)
     props.cancelInterview(props.id)
@@ -53,7 +56,7 @@ export default function Appointment(props) {
   function confirm() {
     transition(CONFIRM)
   }
-
+//mode === conditional statement
  return ( 
    <article className="appointment" data-testid="appointment">
      <Header time={props.time}/>
@@ -67,6 +70,8 @@ export default function Appointment(props) {
 
        />
     )}
+
+    
     {mode === CREATE && (
       <Form
       interviewers={ props.interviewers }

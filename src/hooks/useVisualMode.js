@@ -24,7 +24,7 @@ const useVisualMode = (initial) => {
   }
 
   const back = function() {
-
+    //set new state of previous, remove state on the end, return newstate as old state
     setHistory(prevState => {
       const newHistory = [...prevState];
       newHistory.pop();

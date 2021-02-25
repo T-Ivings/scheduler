@@ -4,6 +4,7 @@ import className from "classnames";
 
 import "components/Button.scss";
 
+//exports functional button, props are atribs
 export default function Button(props) {
    const buttonClass = className("button", {
       "button--confirm": props.confirm,

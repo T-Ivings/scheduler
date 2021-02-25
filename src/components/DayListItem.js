@@ -3,6 +3,7 @@ import className from "classnames";
 
 import "components/DayListItem.scss";
 
+
 export default function DayListItem(props) {
   const DayList = className("day-list__item", {
     "day-list__item--selected": props.selected === true,
@@ -17,6 +18,7 @@ export default function DayListItem(props) {
   );
 }
 
+//spot display logic
 const formatSpots = (spots) => {
   if (spots === 0) {
     return "no spots remaining";

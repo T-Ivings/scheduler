@@ -6,6 +6,7 @@ export function useApplicationData(props) {
   const setDay = day => setState ({
     ...state, day });
 
+    //contains all states, best practice better written
 const [state, setState] = useState({
   day: "Monday",
   days: [],
@@ -32,6 +33,7 @@ function bookInterview(id, interview) {
   });
 }
 
+//"""""""" line 17, without changing spots num
 function editInterview(id, interview) {
   const appointment = {
     ...state.appointments[id],
